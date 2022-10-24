@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "auth": {
+      "mfappe617dbc2": [
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

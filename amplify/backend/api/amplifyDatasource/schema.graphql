@@ -1,0 +1,122 @@
+type Employee
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admins"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Coordinators"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Staffs"], operations: [read, create, update] }
+      { allow: groups, groups: ["Employees"], operations: [read, create, update] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  firstName: String
+  lastName: String
+  dob: AWSDate
+  schrID: String
+  street: String
+  street2: String
+  city: String
+  state: String
+  zip: String
+  phoneNumber: String
+  sex: String
+  email: String
+  isVaccinated: Boolean
+  subID: ID
+  idNumber: String
+  department: String
+  isNew: Boolean
+  groupType: Int
+  groupName: String
+  qaDone: Boolean
+  testDone: Boolean
+  checkIn: AWSDate
+  questionID: ID
+  questionGroup: String
+  scheduleID: ID
+  isSchedule : Int
+}
+
+type Schedule
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admins"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Coordinators"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Staffs"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Employees"], operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  scheduleName: String
+  scheduleType: String
+  startDate: AWSDate
+  endDate: AWSDate
+  days: String
+  employees: [Employee] @hasMany(fields: ["id"])
+}
+
+type Question
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admins"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Coordinators"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Staffs"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Employees"], operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  groupName: String
+  question: String
+  answer: String
+}
+
+type EmployeeQuestion
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admins"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Coordinators"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Staffs"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Employees"], operations: [read, create, update, delete] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  employeeID: ID!
+  question: String
+  answer: String
+}
+
+type TestTypes
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admins"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Coordinators"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Staffs"], operations: [read, create, update, delete] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  name: String
+  totalTime: String
+  firstAlert: String
+  secondAlert: String
+}
+
+type AppSetting
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admins"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Coordinators"], operations: [read, create, update, delete] }
+      { allow: groups, groups: ["Staffs"], operations: [read, create, update, delete] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  isStart: Boolean
+  startDate: AWSDate
+  endDate: AWSDate
+}
+
+   

@@ -1,0 +1,11 @@
+export const APP_COLORS = {
+    APP_BACKGROUND_COLOR : "#696969",
+    STATUS_BAR_BACKGROUND_COLOR : '#6C61A3',
+    PLACE_HOLDER_TEXT_COLOR : '#D8D8D8',
+    BUTTON_COLOR : '#FF3366',
+    BUTTON_DISABLED_COLOR : 'rgba(255, 51, 102, 0.25)',
+    GRAY : '#A9A9A9',
+    WHITE : "#FFF",
+    RED : "red"
+
+}
